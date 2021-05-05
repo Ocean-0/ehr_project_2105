@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class CuPersonalData implements Serializable {
 
-//   ## jobinfo(职务信息)
+//  ## jobinfo(职务信息)
     private int jobNum;
     private String company;
     private String department;
