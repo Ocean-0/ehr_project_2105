@@ -1,6 +1,7 @@
 package com.graduation.baseProvider.service;
 
 import com.graduation.baseProvider.mapper.BaseProviderMapper;
+import com.graduation.hrApi.entities.base.CuAccountInfo;
 import com.graduation.hrApi.entities.base.CuBasicData;
 import com.graduation.hrApi.entities.base.User;
 import com.graduation.hrApi.service.BaseInter;
@@ -36,5 +37,13 @@ public class BaseServiceImpl implements BaseInter {
     public List<CuBasicData> getCuBasicDataAll() {
         return baseProviderMapper.getBasicDataAll();
     }
+
+    @Override
+    public CuAccountInfo checkAccount(String account, String password) {
+        List<CuAccountInfo> cuAccountInfo = baseProviderMapper.checkAccount(account,password);
+        if(cuAccountInfo == null || cuAccountInfo.size() == 0)return null;
+        return cuAccountInfo.get(0);
+    }
+
 
 }
