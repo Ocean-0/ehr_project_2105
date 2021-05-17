@@ -2,6 +2,7 @@ package com.graduation.baseProvider.mapper;
 
 import com.graduation.hrApi.entities.base.CuAccountInfo;
 import com.graduation.hrApi.entities.base.CuBasicData;
+import com.graduation.hrApi.entities.base.CuPersonalData;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,5 +35,13 @@ public interface BaseProviderMapper {
      */
     @Insert(" INSERT INTO cu_basic_data VALUES (#{jobNum},#{userName},#{sex},#{birthday},#{nativePlace},#{nation},#{nationality},#{highestEdu},#{highestDegree},#{idType},#{idNum},#{enName},#{phone},#{phoneTemp},#{email},#{politicalStatus},#{contactTemp},#{contactPhoneTemp},#{maritalStatus},#{homeAddress},#{registeredAddress},#{salary},#{loginPhone}) ")
     public int addCuBasicData(CuBasicData cuBasicData);
+
+    /**
+     * 获取 个人信息
+     * @param account
+     * @return
+     */
+    @Select("SELECT wh.job_num,wh.in_begin_time,wh.in_end_time,wh.in_department,wh.in_station,jic.out_begin_time,jic.out_end_time,jic.out_company,jic.out_department,jic.out_station,jic.edu_begin_time,jic.edu_end_time,jic.school,jic.edu,jic.major,jic.edu_mode ,jic.relation,jic.other_name,jic.other_sex,jic.other_birthday,jic.other_nationality,jic.other_address ,jic.cert_name,jic.cert_level,jic.cert_time,jic.due_date,jic.appendix_type,jic.comments FROM  ( SELECT    woh.out_begin_time,woh.out_end_time,woh.out_company,woh.out_department,woh.out_station  ,jib.job_num,jib.edu_begin_time,jib.edu_end_time,jib.school,jib.edu,jib.major,jib.edu_mode  ,jib.relation,jib.other_name,jib.other_sex,jib.other_birthday,jib.other_nationality,jib.other_address  ,jib.cert_name,jib.cert_level,jib.cert_time,jib.due_date,jib.appendix_type,jib.comments FROM   (  SELECT     ei.edu_begin_time,ei.edu_end_time,ei.school,ei.edu,ei.major,ei.edu_mode   ,jia.job_num,jia.relation,jia.other_name,jia.other_sex,jia.other_birthday,jia.other_nationality,jia.other_address   ,jia.cert_name,jia.cert_level,jia.cert_time,jia.due_date,jia.appendix_type,jia.comments FROM(SELECT fm.relation,fm.other_name,fm.other_sex,fm.other_birthday,fm.other_nationality,fm.other_address,ji.job_num,ji.cert_name,ji.cert_level,ji.cert_time,ji.due_date,ji.appendix_type,ji.comments FROM(SELECT j.job_num,cs.cert_name,cs.cert_level,cs.cert_time,cs.due_date,cs.appendix_type,cs.comments FROM cu_job_info AS j RIGHT JOIN cu_skill AS cs ON j.job_num = cs.job_num ) AS ji RIGHT JOIN cu_family_members AS fm ON ji.job_num = fm.job_num) AS jia RIGHT JOIN cu_edu_info AS ei ON jia.job_num = ei.job_num) AS jib RIGHT JOIN cu_work_out_history AS woh   ON jib.job_num = woh.job_num) AS jic  RIGHT JOIN cu_work_history AS wh ON jic.job_num = wh.job_num WHERE wh.job_num = #{account} ")
+    public List<CuPersonalData> getPersonalData(@Param("account")String account);
 
 }

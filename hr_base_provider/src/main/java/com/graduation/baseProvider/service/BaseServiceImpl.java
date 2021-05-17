@@ -3,6 +3,7 @@ package com.graduation.baseProvider.service;
 import com.graduation.baseProvider.mapper.BaseProviderMapper;
 import com.graduation.hrApi.entities.base.CuAccountInfo;
 import com.graduation.hrApi.entities.base.CuBasicData;
+import com.graduation.hrApi.entities.base.CuPersonalData;
 import com.graduation.hrApi.entities.base.User;
 import com.graduation.hrApi.service.BaseInter;
 import org.apache.dubbo.config.annotation.Service;
@@ -43,6 +44,14 @@ public class BaseServiceImpl implements BaseInter {
         List<CuAccountInfo> cuAccountInfo = baseProviderMapper.checkAccount(account,password);
         if(cuAccountInfo == null || cuAccountInfo.size() == 0)return null;
         return cuAccountInfo.get(0);
+    }
+
+    @Override
+    public CuPersonalData getPersonalData(String account) {
+        List<CuPersonalData> cuPersonalData = baseProviderMapper.getPersonalData(account);
+        if(cuPersonalData == null || cuPersonalData.size() == 0)return null;
+        System.out.printf("getPersonalData : "+ cuPersonalData.get(0));
+        return cuPersonalData.get(0);
     }
 
 
