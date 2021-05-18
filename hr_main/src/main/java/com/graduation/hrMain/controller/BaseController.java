@@ -1,5 +1,6 @@
 package com.graduation.hrMain.controller;
 
+import com.graduation.hrApi.entities.base.CuBasicData;
 import com.graduation.hrApi.entities.base.CuPersonalData;
 import com.graduation.hrApi.model.Result;
 import com.graduation.hrApi.service.BaseInter;
@@ -25,6 +26,15 @@ public class BaseController {
             HttpServletRequest request
     ) throws Exception {
         return baseInter.getPersonalData(account);
+    }
+
+    @PostMapping("/getBasicData")
+    public CuBasicData getBasicData(
+            @RequestParam(value = "account")String account,
+            @RequestParam(value = "token")String token,
+            HttpServletRequest request
+    ) throws Exception {
+        return baseInter.getCuBasicData(account);
     }
 
 

@@ -40,6 +40,11 @@ public class BaseServiceImpl implements BaseInter {
     }
 
     @Override
+    public CuBasicData getCuBasicData(String account) {
+        return baseProviderMapper.getBasicData(account);
+    }
+
+    @Override
     public CuAccountInfo checkAccount(String account, String password) {
         List<CuAccountInfo> cuAccountInfo = baseProviderMapper.checkAccount(account,password);
         if(cuAccountInfo == null || cuAccountInfo.size() == 0)return null;
