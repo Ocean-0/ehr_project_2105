@@ -1,5 +1,8 @@
 package com.graduation.hrApi.entities.base;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,22 +16,40 @@ public class CuPersonalData implements Serializable {
     private String job;
     private String rank;
     private String base;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date entryDate;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date internship;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date officialDate;
 //  ## workhistory(内部工作经历)
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date inBeginTime;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date inEndTime;
     private String inDepartment;
     private String inStation;
 //  ## workouthistory(外部工作经历)
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date outBeginTime;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date outEndTime;
     private String outCompany;
     private String outDepartment;
     private String outStation;
 //  ## eduinfo(教育信息)
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date eduBeginTime;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date eduEndTime;
     private String school;
     private String edu;
@@ -38,6 +59,8 @@ public class CuPersonalData implements Serializable {
     private String relation;
     private String otherName;
     private String otherSex;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date otherBirthday;
     private String otherNationality;
     private String otherPhone;
@@ -45,7 +68,11 @@ public class CuPersonalData implements Serializable {
 //  ## skill(证书技能)
     private String certName;
     private String certLevel;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date certTime;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @Future
     private Date dueDate;
     private String appendixSize;
     private String appendixType;
