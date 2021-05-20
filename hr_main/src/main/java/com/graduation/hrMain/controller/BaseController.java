@@ -57,4 +57,14 @@ public class BaseController {
         return baseInter.getAnAbility(account);
     }
 
+    @PostMapping("/getAnEdu")
+    public List getAnEdu(
+            @RequestParam(value = "account")String account,
+            @RequestParam(value = "token")String token,
+            HttpServletRequest request
+    ) throws Exception {
+        System.out.printf("getAnEdu："+baseInter.getAnEdu());
+        return baseInter.getAnEdu();
+    }
+
 }

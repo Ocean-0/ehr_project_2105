@@ -75,5 +75,18 @@ public class BaseServiceImpl implements BaseInter {
         return arr;
     }
 
+    @Override
+    public List getAnEdu() {
+        AnEdu ane = baseProviderMapper.getAnEdu();
+        List arr = new ArrayList();
+        arr.add(ane.getA());
+        arr.add(ane.getB());
+        arr.add(ane.getC());
+        arr.add(ane.getD());
+        arr.add(ane.getE());
+        arr.add(ane.getF());
+        return arr;
+    }
+
 
 }

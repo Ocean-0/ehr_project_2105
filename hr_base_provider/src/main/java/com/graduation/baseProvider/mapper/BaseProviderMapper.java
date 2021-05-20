@@ -63,4 +63,12 @@ public interface BaseProviderMapper {
      */
     @Select(" select cba.user_name userName, ana.job_num jobNum, ana.communicate communicate, ana.administration administration, ana.team team, ana.develop develop, ana.efficiency efficiency from an_ability ana,cu_basic_data cba where ana.job_num = cba.job_num and ana.job_num = #{account} ")
     public AnAbility getAnAbility(@Param("account")String account);
+
+    /**
+     * 获取本科分布
+     * @return
+     */
+    @Select(" select a.a a,b.b b, c.c c, d.d d, e.e e, f.f f from (select count(*) a from cu_basic_data where highest_edu = '中专') a, (select count(*) b from cu_basic_data where highest_edu = '大专') b, (select count(*) c from cu_basic_data where highest_edu = '本科') c,(SELECT COUNT(*) d FROM cu_basic_data WHERE highest_edu = '硕士') d,(SELECT COUNT(*) e FROM cu_basic_data WHERE highest_edu = '博士') e,(SELECT COUNT(*) f FROM cu_basic_data WHERE highest_edu = '博士后') f ")
+    public AnEdu getAnEdu();
+
 }
