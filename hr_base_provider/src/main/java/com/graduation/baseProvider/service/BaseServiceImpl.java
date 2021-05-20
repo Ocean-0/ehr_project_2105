@@ -1,15 +1,13 @@
 package com.graduation.baseProvider.service;
 
 import com.graduation.baseProvider.mapper.BaseProviderMapper;
-import com.graduation.hrApi.entities.base.CuAccountInfo;
-import com.graduation.hrApi.entities.base.CuBasicData;
-import com.graduation.hrApi.entities.base.CuPersonalData;
-import com.graduation.hrApi.entities.base.User;
+import com.graduation.hrApi.entities.base.*;
 import com.graduation.hrApi.service.BaseInter;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,6 +55,24 @@ public class BaseServiceImpl implements BaseInter {
         if(cuPersonalData == null || cuPersonalData.size() == 0)return null;
         System.out.printf("getPersonalData : "+ cuPersonalData.get(0));
         return cuPersonalData.get(0);
+    }
+
+    @Override
+    public AnSex getAnSex() {
+        return baseProviderMapper.getAnSex();
+    }
+
+    @Override
+    public List getAnAbility(String account) {
+        AnAbility ana = baseProviderMapper.getAnAbility(account);
+        List arr = new ArrayList();
+        arr.add(ana.getUserName());
+        arr.add(ana.getCommunicate());
+        arr.add(ana.getAdministration());
+        arr.add(ana.getTeam());
+        arr.add(ana.getDevelop());
+        arr.add(ana.getEfficiency());
+        return arr;
     }
 
 

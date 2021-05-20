@@ -1,9 +1,6 @@
 package com.graduation.hrApi.service;
 
-import com.graduation.hrApi.entities.base.CuAccountInfo;
-import com.graduation.hrApi.entities.base.CuBasicData;
-import com.graduation.hrApi.entities.base.CuPersonalData;
-import com.graduation.hrApi.entities.base.User;
+import com.graduation.hrApi.entities.base.*;
 
 import java.util.List;
 
@@ -15,5 +12,7 @@ public interface BaseInter {
     public CuBasicData getCuBasicData(String account);
     public CuAccountInfo checkAccount(String account, String password);
     public CuPersonalData getPersonalData(String account);
+    public AnSex getAnSex();
+    public List getAnAbility(String account);
 
 }
