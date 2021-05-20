@@ -25,8 +25,9 @@ public class AttCount implements Serializable {
     @Future
     private Date offTime;
     private double hours;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Future
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @Future
+//    @JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone = "GMT+8")
     private Date coutDate;
 
     public AttCount() { }

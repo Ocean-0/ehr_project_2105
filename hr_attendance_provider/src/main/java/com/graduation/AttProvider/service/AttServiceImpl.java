@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,7 +34,10 @@ public class AttServiceImpl implements AttInter {
         List result = new ArrayList();
         for(index = 0; index < att.size(); index++){
             List temp = new ArrayList();
-            temp.add(att.get(index).getCoutDate());
+            // yyyy-mm-dd 与 yyyy-MM-dd ?
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            temp.add(sdf.format(att.get(index).getCoutDate()));
+//            temp.add(att.get(index).getCoutDate());
             temp.add(att.get(index).getHours());
             result.add(temp);
         }
