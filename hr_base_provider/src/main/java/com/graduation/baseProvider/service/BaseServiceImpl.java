@@ -88,5 +88,10 @@ public class BaseServiceImpl implements BaseInter {
         return arr;
     }
 
+    @Override
+    public List<CuNotice> getCuNoticeAll() {
+        return baseProviderMapper.getCuNoticeAll();
+    }
+
 
 }

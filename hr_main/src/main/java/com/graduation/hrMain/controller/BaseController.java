@@ -2,6 +2,7 @@ package com.graduation.hrMain.controller;
 
 import com.graduation.hrApi.entities.base.AnSex;
 import com.graduation.hrApi.entities.base.CuBasicData;
+import com.graduation.hrApi.entities.base.CuNotice;
 import com.graduation.hrApi.entities.base.CuPersonalData;
 import com.graduation.hrApi.model.Result;
 import com.graduation.hrApi.service.BaseInter;
@@ -65,6 +66,15 @@ public class BaseController {
     ) throws Exception {
         System.out.printf("getAnEdu："+baseInter.getAnEdu());
         return baseInter.getAnEdu();
+    }
+
+    @PostMapping("/getCuNoticeAll")
+    public List<CuNotice> getCuNoticeAll(
+            @RequestParam(value = "account")String account,
+            @RequestParam(value = "token")String token,
+            HttpServletRequest request
+    ) throws Exception {
+        return baseInter.getCuNoticeAll();
     }
 
 }

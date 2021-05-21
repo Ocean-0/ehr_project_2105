@@ -71,4 +71,11 @@ public interface BaseProviderMapper {
     @Select(" select a.a a,b.b b, c.c c, d.d d, e.e e, f.f f from (select count(*) a from cu_basic_data where highest_edu = '中专') a, (select count(*) b from cu_basic_data where highest_edu = '大专') b, (select count(*) c from cu_basic_data where highest_edu = '本科') c,(SELECT COUNT(*) d FROM cu_basic_data WHERE highest_edu = '硕士') d,(SELECT COUNT(*) e FROM cu_basic_data WHERE highest_edu = '博士') e,(SELECT COUNT(*) f FROM cu_basic_data WHERE highest_edu = '博士后') f ")
     public AnEdu getAnEdu();
 
+    /**
+     * 获取所有公告
+     * @return
+     */
+    @Select(" SELECT * FROM cu_notice ")
+    public List<CuNotice> getCuNoticeAll();
+
 }

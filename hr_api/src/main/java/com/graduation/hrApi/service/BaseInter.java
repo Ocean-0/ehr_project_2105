@@ -15,5 +15,5 @@ public interface BaseInter {
     public AnSex getAnSex();
     public List getAnAbility(String account);
     public List getAnEdu();
-
+    public List<CuNotice> getCuNoticeAll();
 }
