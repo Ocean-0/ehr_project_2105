@@ -31,7 +31,7 @@ public class CacheUtil {
         return ResultUtil.success(1,msg, null);
     }
 
-    public boolean checkLoginStatus(String token, String userAccount){
+    public static boolean checkLoginStatus(String token, String userAccount){
         if(jedis.get(token) == null || jedis.get(userAccount) == null || !jedis.get(token).equals(jedis.get(userAccount)))
             return false;
         return true;

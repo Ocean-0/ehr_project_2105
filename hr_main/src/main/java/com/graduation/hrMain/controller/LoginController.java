@@ -1,5 +1,6 @@
 package com.graduation.hrMain.controller;
 
+import com.graduation.hrApi.Utils.ResultUtil;
 import com.graduation.hrApi.service.BaseInter;
 import com.graduation.hrApi.model.*;
 import com.graduation.hrMain.Utils.CacheUtil;
@@ -19,19 +20,36 @@ public class LoginController {
     private BaseInter baseInter;
 
     @PostMapping("/login")
-    public String login(
+    public Result login(
             @RequestParam(value = "account")String account,
             @RequestParam(value = "passWord")String passWord,
             HttpServletRequest request
     ) throws Exception {
         System.out.println(account + " " + passWord + " " + baseInter.checkAccount(account,passWord) + " " + request);
-        String token = account+"-"+ UUID.randomUUID();
-        if(baseInter.checkAccount(account,passWord) != null) {
+        String token = account+"/"+ UUID.randomUUID();
+        if(baseInter.checkAccount(account,passWord) != null || CacheUtil.checkLoginStatus(token,account)) {
             Result temp = CacheUtil.checkLoginIn(token,account,request);
             System.out.println("login:"+ temp + ":::" +request.getRemoteHost());
-            return "connection";
+            return ResultUtil.success(1,"connection",token,null);
         }
-        return "connection fail";
+        return ResultUtil.error(0,"connection fail");
     }
+
+//    @PostMapping("/login")
+//    public String login(
+//            @RequestParam(value = "account")String account,
+//            @RequestParam(value = "passWord")String passWord,
+//            HttpServletRequest request
+//    ) throws Exception {
+//        System.out.println(account + " " + passWord + " " + baseInter.checkAccount(account,passWord) + " " + request);
+//        String token = account+"/"+ UUID.randomUUID();
+//        if(baseInter.checkAccount(account,passWord) != null) {
+//            Result temp = CacheUtil.checkLoginIn(token,account,request);
+//            System.out.println("login:"+ temp + ":::" +request.getRemoteHost());
+//            return "connection";
+//        }
+//        return "connection fail";
+//    }
+
 
 }
